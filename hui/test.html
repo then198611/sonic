@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title></title>
+        <script src="hui.js"></script>
+    </head>
+    
+    <body>
+        <div class="test">
+            <a class="href a1" href="http://www.hichao.com">12121</a>
+            <a class="href a2" href="http://www.hichao.com">12121</a>
+            <a class="href" href="http://www.hichao.com">12121</a>
+            <a class="href" href="http://www.hichao.com">12121</a>
+            <a class="href" href="http://www.hichao.com">12121</a>
+            <a class="href" href="http://www.hichao.com">12121</a>
+            <a class="href" href="http://www.hichao.com">12121</a>
+            <a class="href" href="http://www.hichao.com">12121</a>
+        </div>
+        <div id="div"></div>
+        <div class="test"><p>haha</p></div>
+            <input type="text" />
+        <script>
+            $(function(){
+                // $('.test').on('click','a',{foo:"bar"},function(e){
+                //     e.halt();
+                //     if($(this).hasClass('aaa')){
+                //         $('.test').off();
+                //         alert('off event')
+                //     }
+                //     else{
+                //         alert(1);
+                //     }
+                // })
+                $('p').on('touchstart',function(){
+                    alert($(this).text());
+                })
+                // $('.test').append('<a class="aaa" href="http://www.hichao.com">aaaa</a>');
+                
+                // $.ajax({
+                //     type : 'get',
+                //     url : 'json.js',
+                //     data : {a:1},
+                //     dataType : 'json',
+                //     success : function(result){
+                //         console.log(result);
+                //     }
+                // })
+
+                $.getScript('http://fed.dev.pimg.cn/js/gallery/hui/json.js',function(){
+                    console.log('success');
+                })
+                
+            })
+            
+        </script>
+    </body>
+
+</html>
