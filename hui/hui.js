@@ -140,7 +140,7 @@
         });
         hnode.on('error', function () {
             hnode.remove();
-            error && error()
+            error && error();
         });
         H('head').append(node);
         return node;
