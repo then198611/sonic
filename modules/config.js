@@ -9,11 +9,18 @@
 
 var S = {
     PORT : '8888',
-    SQL : {
+    /*SQL : {
         NAME : 'website',
         URL : '192.168.1.20',
         PORT : '3306',
         PASSWORD : 'GWXmYaonK4TFx1qiDGdlvWKOJ'
+    },*/
+	SQL : {
+		DATABASE : 'database',
+        USER : 'root',
+        HOST : '127.0.0.1',
+        PORT : '3306',
+        PASSWORD : '1'
     },
     REDIS : {
 
