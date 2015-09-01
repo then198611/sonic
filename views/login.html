@@ -8,6 +8,9 @@
 <body>
     <div class="container">
         <div class="col-xs-3">
+			<% if(error){ %>
+			<div class="alert alert-danger"><%= error %></div>	
+			<% } %>
             <form method="post" action="/login">
                 <div class="form-group">
                     <label>用户名</label>

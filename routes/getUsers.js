@@ -4,16 +4,16 @@ var router = express.Router();
 
 /* GET userData. */
 router.get('/', function(req, res, next) {
-    sql.setClient({
+	res.header("Access-Control-Allow-Origin", "*");
+	var username = req.query['username'];
+	var fetchSql = username ? 'select * from user where username="'+username+'"' : 'select * from user';
+    sql.init({
 		database : 'my'
 	})	
-	sql.connect();
-	sql.fetch('select * from user',function(err,result){
-		console.log(result);
-    	res.send(result);
-		sql.close();
+	sql.fetch(fetchSql,function(err,result){
+    	res.send(sql.setResult(err,result));
 	})
+	//res.send({a:1})
 })
-
 
 module.exports = router;
