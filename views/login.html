@@ -6,7 +6,7 @@
     <link rel='stylesheet' href='/bootstrap/css/bootstrap.min.css'/>
 </head>
 <body>
-    <div class="container">
+    <div class="container" style="padding-top:50px;">
         <div class="col-xs-3">
 			<% if(error){ %>
 			<div class="alert alert-danger"><%= error %></div>	
@@ -20,7 +20,8 @@
                     <label>密码</label>
                     <input type="text" name="password" class="form-control"/>
                 </div>
-                <button class="btn btn-default">登录</button>
+                <button class="btn btn-primary">登录</button>
+                <a class="btn btn-link" href="/register">注册</a>
             </form>
         </div>
     </div>
