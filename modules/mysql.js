@@ -11,6 +11,7 @@ var SQL = {
 	},
 	setClientPool : function(configs){
 		var self = this,
+			configs = configs || {},
 			pool = {};
 		pool.host = configs.host || config.SQL.HOST;
 		pool.port = configs.port || config.SQL.PORT;

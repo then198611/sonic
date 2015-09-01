@@ -10,9 +10,7 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
 	var username = req.body.username,
 		password = req.body.password;
-	sql.init({
-		database : 'my'
-	})	
+	sql.init();
 	sql.fetch('select * from user where username="'+username+'"',function(err,result){
 		var userSuccess = false;
 		if(result.length > 0){
@@ -22,7 +20,7 @@ router.post('/', function(req, res, next) {
 				}
 			})
 		}
-		!userSuccess ? res.render('login',{error : '用户名或密码错误！'}) : res.send('welcome '+ username);
+		!userSuccess ? res.render('login',{error : '用户名或密码错误!'}) : res.send('welcome '+ username);
 	})
 
 })
