@@ -9,6 +9,7 @@ var ejs = require('ejs');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var login = require('./routes/login');
+var register = require('./routes/register');
 var getUsers = require('./routes/getUsers');
 var config = require('./modules/config');//配置
 
@@ -32,6 +33,7 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/login', login);
 app.use('/getUsers', getUsers);
+app.use('/register', register);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

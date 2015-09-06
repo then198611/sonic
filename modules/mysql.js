@@ -11,13 +11,12 @@ var SQL = {
 	},
 	setClientPool : function(configs){
 		var self = this,
-			configs = configs || {},
 			pool = {};
-		pool.host = configs.host || config.SQL.HOST;
-		pool.port = configs.port || config.SQL.PORT;
-		pool.user = configs.user || config.SQL.USER;
-		pool.password = configs.password || config.SQL.PASSWORD;
-		pool.database = configs.database || config.SQL.DATABASE;
+		pool.host = configs && configs.host || config.SQL.HOST;
+		pool.port = configs && configs.port || config.SQL.PORT;
+		pool.user = configs && configs.user || config.SQL.USER;
+		pool.password = configs && configs.password || config.SQL.PASSWORD;
+		pool.database = configs && configs.database || config.SQL.DATABASE;
 		self.pool = mysql.createPool(pool);
 	},
 	close : function(){
