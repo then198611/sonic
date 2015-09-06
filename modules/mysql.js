@@ -21,7 +21,7 @@ var SQL = {
 	},
 	close : function(){
 		var self = this;
-		self.client.end();
+		self.pool.end();
 	},
 	fetch : function(sql,callback){
 		var self = this;
@@ -43,8 +43,9 @@ var SQL = {
 				return;
 			}
 			client.query(sql,function(err,res){
-				self.pool.releaseConnection(client);
 				callback && callback.apply(self,arguments);
+				//self.pool.releaseConnection(client);
+				client.release();
 			})
 		})
 	},
