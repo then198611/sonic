@@ -23,7 +23,9 @@ router.post('/', function (req, res, next) {
         return;
     }
     else {
-        sql.init();
+        sql.init({
+            database : 'sonic'
+        });
         sql.fetch('select * from user where username="' + username + '"', function (err, result1) {
             var newUser = true,
                 data = '';

@@ -10,17 +10,25 @@ router.get('/', function (req, res, next) {
 router.post('/', function (req, res, next) {
     var username = req.body.username,
         password = req.body.password;
-    sql.init();
+    sql.init({
+        database : 'sonic'
+    });
     sql.fetch('select * from user where username="' + username + '"', function (err, result) {
         var userSuccess = false;
-        if (result.length > 0) {
+        if (!err && result.length > 0) {
             result.forEach(function (o) {
                 if (o.password == password) {
                     userSuccess = true;
                 }
             })
         }
-        !userSuccess ? res.render('login', {error: '用户名或密码错误!'}) : res.send('welcome ' + username);
+        if(!userSuccess){
+            res.render('login', {error: '用户名或密码错误!'})
+        }
+        else{
+            res.cookie('username',username,{maxAge:30*60*1000, path:'/'});
+            res.redirect('/');
+        }
     })
 
 })
