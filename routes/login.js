@@ -11,7 +11,7 @@ router.get('/', function (req, res, next) {
 router.post('/', function (req, res, next) {
     var username = req.body.username,
         password = req.body.password;
-    new cookie(req, res);
+    var diyCookie =  new cookie(req, res);
     sql.init({
         database: 'sonic'
     });
@@ -28,7 +28,7 @@ router.post('/', function (req, res, next) {
             res.render('login', {error: '用户名或密码错误!'})
         }
         else {
-            res.cookie('username', username, {maxAge: 30 * 60 * 1000, path: '/'});
+            diyCookie.set('username', username, {maxAge: 30 * 60 * 1000, path: '/'});
             res.redirect('/');
         }
     })

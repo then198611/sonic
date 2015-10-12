@@ -9,6 +9,9 @@
 </head>
 <body>
 	<div class="container">
+        <% if(name){ %>
+            <div>hello <%= name %></div>
+        <% } %>
         <p>
             req:<%= req %>
         </p>
