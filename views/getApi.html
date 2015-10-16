@@ -7,12 +7,10 @@
 <body>
     <h2><%= data.message %></h2>
 
-    <h3><%= data.express %>:<%= data.express_sn %></h3>
-
-    <% if (data.data.length > 0){ %>
+    <%　if (data.data.items.length) { %>
     <ul>
-        <% data.data.forEach(function(item){ %>
-            <li><%=item.ftime %>到达：<%=item.context %></li>
+        <% data.data.items.forEach(function(item){ %>
+            <li><%=item.component.userName %>在<%=item.component.publishDate %>评论：<%=item.component.content %></li>
         <% }) %>
     </ul>
     <% } %>

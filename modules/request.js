@@ -10,21 +10,25 @@ request.prototype = {
         options = options || {};
         self.data = options.data ? querystring.stringify(options.data) : '';
         self.callback = options.callback || null;
-
+                  
         self.options = {
             hostname : options.hostname || '',
             port : options.port || 80,
             path : options.path || '/',
             method : options.method || 'GET'
-            /*headers : options.headers || {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'Content-Length': self.data.length
-            }*/
-        }
+        };
+        var contentText = self.options.method == 'GET' ? {
+            'Content-Type': 'application/json;charset=utf8'
+        } : {
+            'Content-Type': 'application/json;charset=utf8',
+            'Content-Length': Buffer.byteLength(self.data,'utf-8')
+        };
+        self.options.headers = options.headers || contentText;
+        
         if(self.options.method == 'GET' && self.data){
             self.options.path = self.options.path.indexOf('?') != -1 ? self.options.path + self.data :  self.options.path + '?' + self.data;
         }
-        console.log(self.options.path);
+
         if(self.options.hostname) {
             self.createRequest();
         }
@@ -32,14 +36,16 @@ request.prototype = {
     createRequest : function(){
         var self = this;
         self.req = http.request(self.options,function(rs){
+            var body = '';
             //console.log('STATUS:'+ rs.statusCode);
             //console.log('HEADERS:'+ JSON.stringify(rs.headers));
             rs.setEncoding('utf8');
             rs.on('data', function (chunk) {
-                self.callback && self.callback(chunk);
+                body += chunk;
             });
-
             rs.on('end', function() {
+                var data = JSON.parse(body.toString());
+                self.callback && self.callback(data);
                 console.log('No more data in response.')
             })
         })

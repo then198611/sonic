@@ -14,15 +14,19 @@ router.get('/', function (req, res) {
 
     });*/
     new request({
-        hostname : 'v1.admin.shop.hichao.com',
-        path : '/api/kuaidi/api',
+        hostname : 'api2.hichao.com',
+        path : '/comments',
         data : {
-            express_sn : 100212272285,
-            order_id : 308
+            id : 102,
+            type : 'theme',
+            access_token : 'yk0rcg-R38tiElCbOnxBU_x3vzTl4-9Q_UGYXb84idE'
         },
         callback : function(data){
+            // res.render('getApi', {
+            //     data : JSON.parse(data)
+            // });
             res.render('getApi', {
-                data : JSON.parse(data)
+                data : data
             });
         }
     });
