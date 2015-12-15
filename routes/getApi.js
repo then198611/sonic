@@ -5,14 +5,6 @@ var router = express.Router();
 
 /* GET api page. */
 router.get('/', function (req, res) {
-    /*var request = http.get('http://admin.shop.hichao.com/api/kuaidi/api?express_sn=229266370172',function(rs){
-        rs.setEncoding('utf8');
-        rs.on('data',function(data){
-            request.end();
-            console.log(data);
-        })
-
-    });*/
     new request({
         hostname : 'api2.hichao.com',
         path : '/comments',

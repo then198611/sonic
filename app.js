@@ -5,9 +5,11 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var ejs = require('ejs');
+var log4js = require('log4js');
 
 var setRoute = require('./modules/setRoute');//设置路由
 var config = require('./modules/config');//配置
+var log4js_config = require('./modules/log4js.json');//log4js config
 
 var app = express();
 
@@ -25,6 +27,15 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use('/promotion',express.static(__dirname + '/promotion'));
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+log4js.configure(log4js_config);
+var logfile = log4js.getLogger('log_file');
+/*logfile.trace('This is trace');
+logfile.debug('This is debug');
+logfile.info('This is info');
+logfile.warn('This is warn');
+logfile.error('This is error');*/
 
 setRoute(app);
 

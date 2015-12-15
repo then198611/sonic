@@ -1,5 +1,10 @@
 var http = require('http');
 var querystring = require('querystring');
+var log4js = require('log4js');
+var log4js_config = require('./log4js.json');
+
+log4js.configure(log4js_config);
+var logfile = log4js.getLogger('log_file');
 
 var request = function (options) {
     this.init(options);
@@ -46,11 +51,13 @@ request.prototype = {
             rs.on('end', function() {
                 var data = JSON.parse(body.toString());
                 self.callback && self.callback(data);
-                console.log('No more data in response.')
+                console.log('request normal:'+ self.options.hostname + self.options.path)
+                logfile.info('request normal:'+ self.options.hostname + self.options.path);
             })
         })
         self.req.on('error', function(e) {
-            console.log('problem with request: ' + e.message);
+            console.log('request normal:'+ self.options.hostname + self.options.path);
+            logfile.error('request normal:'+ self.options.hostname + self.options.path);
         });
         self.options.method == 'POST' && self.req.write(self.data);
         self.req.end();
